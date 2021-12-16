@@ -70,17 +70,17 @@ def add_time(start, duration, *day):
         # Match the day to list of days_of_week and pull out the index
         day_index = days_of_week.index(day)
         
-        # Total number of days is calulcated above and added into day_statement, allows to cut down on loop or forgo loop while period
+        # Total number of days calculated and added into day_statement
         new_day = new_day % 7
-        # Return statement with optional arg and same day
+        # same day
         if new_day == 0:
             new_time = f"{new_hour}:{new_minute} {new_meridiem}, {day}"
-        # Return statement with optional arg and next day
+        # next day
         elif new_day == 1:
             day_index += 1
             day = days_of_week[day_index]
             new_time = f"{new_hour}:{new_minute} {new_meridiem}, {day} {day_statement}"
-        # Logic / Return statement if more than next day and cutting to the next week
+        # more than a day
         else:
             if new_day + day_index >= 7:
                 new_day = day_index - new_day
@@ -91,8 +91,6 @@ def add_time(start, duration, *day):
             day = days_of_week[day_index]
             new_time = f"{new_hour}:{new_minute} {new_meridiem}, {day} {day_statement}"
 
-    # Return statement, if it progresses by a day, add the day_statement
-    # If *day is included, everything dont above, else complete below
     if day:
         return new_time
     else:
